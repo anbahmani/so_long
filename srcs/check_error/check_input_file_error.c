@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 21:34:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/06 18:49:43 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/07 16:33:01 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_input_file_name(char const *file_name)
 		return (0);
 	if (file_name[len - 1] != 'r'
 		|| file_name[len - 2] != 'e'
-		|| file_name[len - 3] != 'b' \
+		|| file_name[len - 3] != 'b'
 		|| file_name[len - 4] != '.')
 		return (0);
 	return (1);
@@ -53,17 +53,17 @@ int	check_input_file_error(char const *file_name)
 {
 	if (!check_input_file_name(file_name))
 	{
-		ft_putstr_fd("Error\nLe nom du fichier est incorrecte.\n", 2);
+		print_error("Le nom du fichier est incorrecte.");
 		return (0);
 	}
 	if (!check_input_file_existing(file_name))
 	{
-		ft_putstr_fd("Error\nLe fichier entré est inexistant.\n", 2);
+		print_error("Le fichier entré est inexistant.\n");
 		return (0);
 	}
 	if (!check_input_not_directory(file_name))
 	{
-		ft_putstr_fd("Error\nLe fichier entré est un dossier.\n", 2);
+		print_error("Le fichier entré est un dossier.");
 		return (0);
 	}
 	return (1);

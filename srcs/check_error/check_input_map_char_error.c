@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:50:49 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/06 18:50:43 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/07 14:54:32 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,20 @@ static int	check_number_exit(char **tab)
 
 int	check_number_char(char **tab)
 {
-	if (!check_number_player(tab) || !check_number_collectible(tab)
-		|| !check_number_exit(tab))
+	if (!check_number_player(tab))
+	{
+		print_error("Le nombre de joueur dans la map est invalide.");
 		return (0);
+	}
+	if(!check_number_collectible(tab))
+	{
+		print_error("Le nombre de colectible dans la map est invalide.");
+		return (0);
+	}
+	if(!check_number_exit(tab))
+	{
+		print_error("Le nombre de sortie dans la map est invalide.");
+		return (0);
+	}
 	return (1);
 }

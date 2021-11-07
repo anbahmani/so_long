@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 17:09:17 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/06 17:11:06 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/07 17:40:06 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ int main(int ac, char **av)
 {
 	if (check_error(ac, av) == NULL)
 		return (1);
+	return (0);
 }

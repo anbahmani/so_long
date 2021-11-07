@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 22:07:55 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/06 18:52:21 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/07 17:38:05 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	check_authorized_char(char **tab)
 		while (tab[i][j])
 		{
 			if (tab[i][j] != '1' && tab[i][j] != '0' && tab[i][j] != 'P'
-				&& tab[i][j] != 'C' && tab[i][j] != 'M')
+				&& tab[i][j] != 'C' && tab[i][j] != 'E')
 				return (0);
 			j++;
 		}
@@ -53,6 +53,16 @@ static int	check_map_is_rectangle(char **tab)
 	return (i >= 3);
 }
 
+static char	last_char(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i + 1])
+		i++;
+	return (str[i]);
+}
+
 static int	check_border_char(char **tab)
 {
 	int	i;
@@ -65,26 +75,41 @@ static int	check_border_char(char **tab)
 	{
 		if (tab[0][i] != '1')
 			return (0);
+		i++;
 	}
 	i = 1;
 	while (tab[i + 1] != NULL)
 	{
-		if (tab[i][0] != '1' || tab[i][ft_strlen(tab[i] - 1)] != '1')
+		if (tab[i][0] != '1' || last_char(tab[i]) != '1')
 			return (0);
+		i++;
 	}
 	j = 0;
-	if (tab[i][j])
+	while (tab[i][j])
 	{
 		if (tab[i][j] != '1')
 			return (0);
+		j++;
 	}
 	return (1);
 }
 
 int	check_map(char **tab)
 {
-	if (!check_map_is_rectangle(tab) || check_authorized_char(tab)
-		|| !check_border_char(tab))
+	if (!check_authorized_char(tab))
+	{
+		print_error("La map contient des un ou des caracteres non autorises.");
 		return (0);
+	}
+	if (!check_map_is_rectangle(tab))
+	{
+		print_error("La map n'est pas rectangulaire ou pas assez grande.");
+		return (0);
+	}
+	if(!check_border_char(tab))
+	{
+		print_error("La map n'est pas entouree de mur.");
+		return (0);
+	}
 	return (1);
 }

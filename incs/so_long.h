@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 21:36:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/06 18:51:43 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/07 14:54:48 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2);
 char	**file_to_tab(char const *file_name);
 char	**free_tab(char **tab);
 int		count_str(char const **tab);
+void	print_error(char *msg);
 
 
 #endif

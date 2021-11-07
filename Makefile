@@ -33,7 +33,7 @@ INCS	=	-I ./includes
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -D BUFFER_SIZE=1024
+CFLAGS	=	-Wall -Wextra -Werror -D BUFFER_SIZE=128
 
 RM		=	rm -f
 
@@ -50,6 +50,7 @@ ${NAME}:	 ${OBJS}
 			${CC} ${CFLAGS} ${MLXFLAGS} ${INCS} $^ -o $@ ./${CURRENT_MLX_FOLDER}/${CURRENT_MLX_EXEC} ./libft/libft.a
 			@${CREATE_FOLDER} ${OBJS_FOLDER}
 			@mv srcs/*.o ${OBJS_FOLDER}
+			@mv srcs/*/*.o ${OBJS_FOLDER}
 
 .c.o:
 			${CC} ${CFLAGS} ${INCS} -c $< -o $@

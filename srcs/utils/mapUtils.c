@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:15:02 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/06 18:46:03 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/07 17:40:30 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,50 +22,54 @@ int	count_str(char const **tab)
 	return (cmp);
 }
 
-static char	**add_line(char **tab, char **line)
+static int	count_file_line(char const *file_name)
 {
-	int		size;
-	char	**new;
-	int		i;
+	int		fd;
+	int		cmp;
+	char	*line;
 
-	size = count_str((const char **) tab);
-	new = malloc(sizeof(char *) * size + 1);
-	if (new == NULL)
-	{
-		free_tab(tab);
-		free(line);
-		return (NULL);
-	}
+	fd = open(file_name, O_RDONLY);
+	cmp = 0;
+	while (get_next_line(fd, &line))
+		cmp++;
+	close(fd);
+	return (cmp + 1);
+}
+
+// test d'affichage de la map
+/*static void	print_map(char **tab)
+{
+	int i;
+
 	i = 0;
 	while (tab[i] != NULL)
 	{
-		new[i] = tab[i];
+		ft_putstr_fd(tab[i], 1);
+		ft_putstr_fd("\n", 1);
 		i++;
 	}
-	new[i] = *line;
-	free_tab(tab);
-	return (new);
-}
+}*/
 
 char	**file_to_tab(char const *file_name)
 {
 	char	**tab;
+	int		nb_line;
 	int		fd;
-	int		gnl;
-	char	**line = NULL;
+	int		i;
+//	char	*line;
 
+	nb_line = count_file_line(file_name);
+	i = 0;
 	fd = open(file_name, O_RDONLY);
-	tab = malloc(sizeof(char *));
+	tab = malloc(sizeof(char *) * (nb_line + 1));
 	if (tab == NULL)
 		return (NULL);
-	tab[0] = NULL;
-	gnl = get_next_line(fd, line);
-	while (gnl != -1)
+	while (i < nb_line)
 	{
-		tab = add_line(tab, line);
-		if (tab == NULL)
-			return (NULL);
-		gnl = get_next_line(fd, line);
+		get_next_line(fd, &tab[i]);
+		i++;
 	}
+	tab[nb_line] = NULL;
+	close(fd);
 	return (tab);
 }
