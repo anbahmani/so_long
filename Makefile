@@ -1,16 +1,16 @@
 NAME = so_long
 
-CURRENT_MLX_FOLDER = minilibx-linux
+MLX_LINUX_FOLDER = minilibx-linux
 
-CURRENT_MLX_EXEC = libmlx_Linux.a
+MLX_LINUX_EXEC = libmlx_Linux.a
 
-MLXFLAGS =  -lXext -lX11 -lm
+MLX_LINUX_FLAGS =  -lXext -lX11 -lm
 
-ifeq ($OSTYPE, darwin20.0)
-	CURRENT_MLX_FOLDER = minilibx_macos
-	CURRENT_MLX_EXEC = libmlx.a
-	MLXFLAGS =  -framework OpenGL -framework AppKit
-endif
+MLX_MACOS_FOLDER = minilibx-macos
+
+MLX_MACOS_EXEC = libmlx.a
+
+MLX_MACOS_FLAGS =  -framework OpenGL -framework AppKit
 
 LIBFT = libft
 
@@ -34,7 +34,7 @@ INCS	=	-I ./includes
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -D BUFFER_SIZE=128
+FLAGS	=	-Wall -Wextra -Werror -D BUFFER_SIZE=128
 
 RM		=	rm -f
 
@@ -42,19 +42,31 @@ RM_FOLDER = rm -rf
 
 CREATE_FOLDER = mkdir
 
+OS := $(shell uname)
+
+ifeq ($(OS),Darwin)
+	CURRENT_MLX_FOLDER = ${MLX_MACOS_FOLDER}
+	CURRENT_MLX_EXEC = ${MLX_MACOS_EXEC}
+	FLAGS += ${MLX_MACOS_FLAGS}
+else
+	CURRENT_MLX_FOLDER = ${MLX_LINUX_FOLDER}
+	CURRENT_MLX_EXEC = ${MLX_LINUX_EXEC}
+	FLAGS += ${MLX_LINUX_FLAGS}
+endif
+
 all:		 ${NAME}
 
 
-${NAME}:	 ${OBJS}	
-			${MAKE} -C ${CURRENT_MLX_FOLDER}
+${NAME}:	 ${OBJS}
 			${MAKE} -C ${LIBFT}
-			${CC} ${CFLAGS} ${MLXFLAGS} ${INCS} $^ -o $@ ./${CURRENT_MLX_FOLDER}/${CURRENT_MLX_EXEC} ./libft/libft.a
+			${MAKE} -C ${CURRENT_MLX_FOLDER}
+			${CC} ${FLAGS} ${INCS} $^ -o $@ ./${CURRENT_MLX_FOLDER}/${CURRENT_MLX_EXEC} ./libft/libft.a
 			@${CREATE_FOLDER} ${OBJS_FOLDER}
 			@mv srcs/*.o ${OBJS_FOLDER}
 			@mv srcs/*/*.o ${OBJS_FOLDER}
 
 .c.o:
-			${CC} ${CFLAGS} ${INCS} -c $< -o $@
+			${CC} ${FLAGS} ${INCS} -c $< -o $@
 
 clean:
 			${MAKE} -C ${CURRENT_MLX_FOLDER} clean
