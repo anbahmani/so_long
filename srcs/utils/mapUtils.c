@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:15:02 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/07 17:40:30 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/07 18:05:52 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,15 @@ static int	count_file_line(char const *file_name)
 	char	*line;
 
 	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+		return (-1);
 	cmp = 0;
 	while (get_next_line(fd, &line))
+	{
+		free(line);
 		cmp++;
+	}
+	free(line);
 	close(fd);
 	return (cmp + 1);
 }
@@ -56,19 +62,19 @@ char	**file_to_tab(char const *file_name)
 	int		nb_line;
 	int		fd;
 	int		i;
-//	char	*line;
 
 	nb_line = count_file_line(file_name);
-	i = 0;
+	if (nb_line == -1)
+		return (NULL);
+	i = -1;
 	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+		return (NULL);
 	tab = malloc(sizeof(char *) * (nb_line + 1));
 	if (tab == NULL)
 		return (NULL);
-	while (i < nb_line)
-	{
+	while (++i < nb_line)
 		get_next_line(fd, &tab[i]);
-		i++;
-	}
 	tab[nb_line] = NULL;
 	close(fd);
 	return (tab);

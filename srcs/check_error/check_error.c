@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:58:51 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/07 17:40:55 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/07 18:06:43 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	**check_error(int ac, char **av)
 	if (!check_arg_number_error(ac) || !check_input_file_error(av[1]))
 		return (NULL);
 	tab = file_to_tab(av[1]);
+	if (tab == NULL)
+		return (NULL);
 	if (!check_map(tab) || !check_number_char(tab))
 	{
 		free_tab(tab);

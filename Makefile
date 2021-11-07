@@ -18,6 +18,7 @@ SRCS = 	srcs/get_next_line/get_next_line.c\
 		srcs/get_next_line/get_next_line_utils.c\
 		srcs/free_element/free_tab.c\
 		srcs/utils/mapUtils.c\
+		srcs/utils/fileUtils.c\
 		srcs/check_error/check_arg_error.c\
 		srcs/check_error/check_error.c\
 		srcs/check_error/check_input_file_error.c\
