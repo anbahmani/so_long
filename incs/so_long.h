@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 21:36:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/07 14:54:48 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/08 16:18:46 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include <stdio.h>
 # include <unistd.h>
 # include "libft.h"
+# include "../minilibx-macos/mlx.h"
+/*# include "../minilibx-macos/mlx_int.h"
+# include "../minilibx-macos/mlx_png.h"
+# include "../minilibx-macos/mlx_opengl.h"
+# include "../minilibx-macos/mlx_new_window.h"
+# include <OpenGL/gl.h>*/
 
 char	**check_error(int ac, char **av);
 int		check_arg_number_error(int argc);

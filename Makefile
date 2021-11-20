@@ -14,9 +14,7 @@ MLX_MACOS_FLAGS =  -framework OpenGL -framework AppKit
 
 LIBFT = libft
 
-SRCS = 	srcs/get_next_line/get_next_line.c\
-		srcs/get_next_line/get_next_line_utils.c\
-		srcs/free_element/free_tab.c\
+SRCS = 	srcs/free_element/free_tab.c\
 		srcs/utils/mapUtils.c\
 		srcs/utils/fileUtils.c\
 		srcs/check_error/check_arg_error.c\
@@ -25,12 +23,14 @@ SRCS = 	srcs/get_next_line/get_next_line.c\
 		srcs/check_error/check_input_map_char_error.c\
 		srcs/check_error/check_input_map_error.c\
 		srcs/so_long_main.c\
+		srcs/get_next_line/get_next_line.c\
+		srcs/get_next_line/get_next_line_utils.c\
 
 OBJS	=	${SRCS:.c=.o}
 
 OBJS_FOLDER = .objs
 
-INCS	=	-I ./includes
+INCS	=	-I./includes
 
 CC		=	gcc
 
@@ -47,11 +47,11 @@ OS := $(shell uname)
 ifeq ($(OS),Darwin)
 	CURRENT_MLX_FOLDER = ${MLX_MACOS_FOLDER}
 	CURRENT_MLX_EXEC = ${MLX_MACOS_EXEC}
-	FLAGS += ${MLX_MACOS_FLAGS}
+	CURRENT_MLX_FLAGS = ${MLX_MACOS_FLAGS}
 else
 	CURRENT_MLX_FOLDER = ${MLX_LINUX_FOLDER}
 	CURRENT_MLX_EXEC = ${MLX_LINUX_EXEC}
-	FLAGS += ${MLX_LINUX_FLAGS}
+	CURRENT_MLX_FLAGS = ${MLX_LINUX_FLAGS}
 endif
 
 all:		 ${NAME}
@@ -60,7 +60,7 @@ all:		 ${NAME}
 ${NAME}:	 ${OBJS}
 			${MAKE} -C ${LIBFT}
 			${MAKE} -C ${CURRENT_MLX_FOLDER}
-			${CC} ${FLAGS} ${INCS} $^ -o $@ ./${CURRENT_MLX_FOLDER}/${CURRENT_MLX_EXEC} ./libft/libft.a
+			${CC} ${FLAGS} ${CURRENT_MLX_FLAGS} ${INCS} $^ -o $@ ./${CURRENT_MLX_FOLDER}/${CURRENT_MLX_EXEC} ./libft/libft.a
 			@${CREATE_FOLDER} ${OBJS_FOLDER}
 			@mv srcs/*.o ${OBJS_FOLDER}
 			@mv srcs/*/*.o ${OBJS_FOLDER}
