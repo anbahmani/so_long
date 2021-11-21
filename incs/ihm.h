@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ihm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/01 21:36:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/21 15:22:11 by abahmani         ###   ########.fr       */
+/*   Created: 2021/11/21 11:37:35 by abahmani          #+#    #+#             */
+/*   Updated: 2021/11/21 15:33:46 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef IHM_H
+# define IHM_H
 
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include "libft.h"
-# include "../minilibx-macos/mlx.h"
-# include "../minilibx-linux/mlx.h"
-# include "get_map.h"
-# include "free.h"
-# include "check_error.h"
-# include "ihm.h" 
+# include "so_long.h"
 # include "img.h"
 
-int		count_str(char const **tab);
-void	print_error(char *msg);
-
+typedef struct s_ihm
+{
+	void	*mlx;
+	void	*mlx_win;
+	t_img	img;
+}	t_ihm;
 
 #endif

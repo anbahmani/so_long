@@ -4,7 +4,7 @@ MLX_LINUX_FOLDER = minilibx-linux
 
 MLX_LINUX_EXEC = libmlx_Linux.a
 
-MLX_LINUX_FLAGS =  -lXext -lX11 -lm
+MLX_LINUX_FLAGS =   -lXext -lX11 -lm
 
 MLX_MACOS_FOLDER = minilibx-macos
 
@@ -32,7 +32,7 @@ OBJS_FOLDER = .objs
 
 INCS	=	-I./includes
 
-CC		=	gcc
+CC		=	clang
 
 FLAGS	=	-Wall -Wextra -Werror -D BUFFER_SIZE=128
 

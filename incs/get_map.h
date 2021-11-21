@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   get_map.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/01 21:36:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/21 15:22:11 by abahmani         ###   ########.fr       */
+/*   Created: 2021/11/21 11:18:03 by abahmani          #+#    #+#             */
+/*   Updated: 2021/11/21 11:26:55 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef GET_MAP_H
+# define GET_MAP_H
 
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include "libft.h"
-# include "../minilibx-macos/mlx.h"
-# include "../minilibx-linux/mlx.h"
-# include "get_map.h"
-# include "free.h"
-# include "check_error.h"
-# include "ihm.h" 
-# include "img.h"
+# include "so_long.h"
 
-int		count_str(char const **tab);
-void	print_error(char *msg);
-
+int		get_next_line(int fd, char **line);
+char	*ft_substr_gnl(char *s, unsigned int start, size_t len, int f);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+char	**file_to_tab(char const *file_name);
 
 #endif
