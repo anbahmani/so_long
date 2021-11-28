@@ -25,6 +25,10 @@ SRCS = 	srcs/free_element/free_tab.c\
 		srcs/so_long_main.c\
 		srcs/get_next_line/get_next_line.c\
 		srcs/get_next_line/get_next_line_utils.c\
+		srcs/ihm/draw_map.c\
+		srcs/ihm/draw_texture.c\
+		srcs/ihm/init_ihm.c\
+		srcs/ihm/pixel_put.c
 
 OBJS	=	${SRCS:.c=.o}
 

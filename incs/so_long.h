@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 21:36:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/21 15:22:11 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/28 11:21:58 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "check_error.h"
 # include "ihm.h" 
 # include "img.h"
+# include "textures.h"
 
 int		count_str(char const **tab);
 void	print_error(char *msg);

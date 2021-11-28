@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img.h                                              :+:      :+:    :+:   */
+/*   pixel_put.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/21 15:09:43 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/28 15:54:24 by abahmani         ###   ########.fr       */
+/*   Created: 2021/11/28 11:44:38 by abahmani          #+#    #+#             */
+/*   Updated: 2021/11/28 14:52:46 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMG_H
-# define IMG_H
+#include "../../incs/so_long.h"
 
-# include "so_long.h" 
-
-typedef struct s_img
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		*colors;
-}	t_img;
+	char	*dst;
 
-#endif
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
