@@ -34,7 +34,7 @@ static char *result[] = {
 "q c #7E7E7E",
 "w c #7F7E7E",
 "e c #7F7F7E",
-"r c gray50",
+"r c #808080",
 "t c #807C7A",
 "y c #807C7B",
 "u c #807D7B",
