@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 21:36:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/28 11:21:58 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/29 19:33:49 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,15 @@
 # include "ihm.h" 
 # include "img.h"
 # include "textures.h"
+# include "event.h"
+
+typedef struct s_data
+{
+	t_map_data	*map;
+	t_ihm	*data;
+}	t_data;
 
 int		count_str(char const **tab);
 void	print_error(char *msg);
-
 
 #endif

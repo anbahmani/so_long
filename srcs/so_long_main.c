@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 17:09:17 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/28 14:13:04 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/29 19:34:27 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 		return (1);
 	map.width = (int)ft_strlen((char const *)map.map[0]);
 	map.height = (int)count_str((char const **)map.map);
-	init_ihm(map, &data);
+	init_ihm(&map, &data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img.img, 0, 0);
 	mlx_loop(data.mlx);
 	free_tab(map.map);

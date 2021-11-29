@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 18:40:13 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/28 18:51:26 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/29 18:55:35 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	draw_map(t_map_data map, t_ihm *data)
 {
 	int	x;
 	int	y;
-(void)data;
+
 	y = 0;
 	while (y < map.height)
 	{
@@ -24,13 +24,13 @@ void	draw_map(t_map_data map, t_ihm *data)
 		while (x < map.width)
 		{
 			if (map.map[y][x] == '1')
-			 	draw_wall(data, x, y);
+				draw_wall(data, x, y);
 			else if (map.map[y][x] == '0')
-			 	draw_floor(data, x, y);
+				draw_floor(data, x, y);
 			else if (map.map[y][x] == 'C')
-			 	draw_collectible(data, x, y);
+				draw_collectible(data, x, y);
 			else if (map.map[y][x] == 'P')
-			 	draw_player(data, x, y);
+				draw_player(data, x, y);
 			else if (map.map[y][x] == 'E')
 				draw_exit(data, x, y);
 			x++;

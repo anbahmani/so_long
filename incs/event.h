@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_put.c                                        :+:      :+:    :+:   */
+/*   event.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/28 11:44:38 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/29 18:56:03 by abahmani         ###   ########.fr       */
+/*   Created: 2021/11/29 19:31:16 by abahmani          #+#    #+#             */
+/*   Updated: 2021/11/29 21:10:26 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/so_long.h"
+#ifndef EVENT_H
+# define EVENT_H
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*dst;
+# include "so_long.h"
 
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
+# ifdef __APPLE__
+#  define KEY_W 13
+#  define KEY_D 2
+#  define KEY_S 1
+#  define KEY_A 0
+#  define KEY_ESC 53
+# elif __linux__
+#  define KEY_W 119
+#  define KEY_D 100
+#  define KEY_S 115
+#  define KEY_A 97	
+#  define KEY_ESC 65307
+# endif
+
+void	catch_event(t_data *engine);
+
+#endif
