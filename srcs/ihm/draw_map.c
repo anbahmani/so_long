@@ -6,11 +6,42 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 18:40:13 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/29 18:55:35 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/01 09:36:08 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/so_long.h"
+
+void	get_text_data_addr(char *path, t_img *text_img, void *mlx)
+{
+	int		text_width;
+	int		text_height;
+
+	text_img->img = mlx_xpm_file_to_image(mlx, path,
+			&text_width, &text_height);
+	text_img->colors = (int *)mlx_get_data_addr(text_img->img,
+			&(text_img->bits_per_pixel), &(text_img->size_line),
+			&(text_img->endian));
+	text_img->addr = mlx_get_data_addr(text_img->img,
+			&(text_img->bits_per_pixel), &(text_img->size_line),
+			&(text_img->endian));
+}
+
+void	draw_text(t_ihm *data, int x, int y, char *path)
+{
+	t_img	text_img;
+	int		i;
+
+	get_text_data_addr(path, &text_img, data->mlx);
+	i = 0;
+	while (i < HEIGHT_TEXTURES * WIDTH_TEXTURES)
+	{
+		my_mlx_pixel_put(&data->img, (x * 32) + (i % WIDTH_TEXTURES),
+			(y * 32) + (i / WIDTH_TEXTURES), text_img.colors[i]);
+		i++;
+	}
+	mlx_destroy_image(data->mlx, text_img.img);
+}
 
 void	draw_map(t_map_data map, t_ihm *data)
 {
@@ -23,16 +54,7 @@ void	draw_map(t_map_data map, t_ihm *data)
 		x = 0;
 		while (x < map.width)
 		{
-			if (map.map[y][x] == '1')
-				draw_wall(data, x, y);
-			else if (map.map[y][x] == '0')
-				draw_floor(data, x, y);
-			else if (map.map[y][x] == 'C')
-				draw_collectible(data, x, y);
-			else if (map.map[y][x] == 'P')
-				draw_player(data, x, y);
-			else if (map.map[y][x] == 'E')
-				draw_exit(data, x, y);
+			draw_text(data, x, y, get_path(map.map[y][x]));
 			x++;
 		}
 		y++;

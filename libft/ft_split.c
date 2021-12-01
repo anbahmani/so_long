@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 09:28:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/06 19:23:12 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/01 14:46:25 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ char	**ft_split(char const *s, char c)
 {
 	size_t	nb_str;
 	char	**tab_str;
-
 
 	if (!s)
 		return (0);

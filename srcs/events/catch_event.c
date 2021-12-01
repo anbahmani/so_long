@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:09:40 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/29 21:10:33 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/01 14:44:03 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,29 @@
 int	key_events(int keycode, t_data *engine)
 {
 	if (keycode == KEY_W)
-		up_move(engine);
+		move(engine, engine->map->player.x, engine->map->player.y - 1);
 	else if (keycode == KEY_D)
-		right_move(engine);
+		move(engine, engine->map->player.x + 1, engine->map->player.y);
 	else if (keycode == KEY_S)
-		down_move(engine);
+		move(engine, engine->map->player.x, engine->map->player.y + 1);
 	else if (keycode == KEY_A)
-		left_move(engine);
+		move(engine, engine->map->player.x - 1, engine->map->player.y);
 	else if (keycode == KEY_ESC)
-		quit(engine);
+		end_game(engine);
+	mlx_put_image_to_window(engine->data->mlx, engine->data->mlx_win,
+	engine->data->img.img, 0, 0);
+	return (0);
 }
 
 int mouse_event(t_data *engine)
 {
-	quit(engine);
+	end_game(engine);
+	return (0);
 }
 
 void	catch_event(t_data *engine)
 {
-	mlx_hook(engine->data->mlx_win, 2, 1L<<0, key_events, &engine);
-	mlx_hook(engine->data->mlx_win, 17, 1L<<2, mouse_event, &engine);
+	mlx_hook(engine->data->mlx_win, 2, 1L<<0, key_events, engine);
+	mlx_hook(engine->data->mlx_win, 17, 1L<<2, mouse_event, engine);
 	mlx_loop(engine->data->mlx);
 }

@@ -6,19 +6,23 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:59:14 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/28 17:52:02 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/11/30 00:38:12 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXTURES_H
 # define TEXTURES_H
 
-# define PLAYER_TEXTURES  "./textures/player.xpm"
-# define FLOOR_TEXTURES  "./textures/floor.xpm"
-# define EXIT_TEXTURES  "./textures/exit.xpm"
-# define WALL_TEXTURES  "./textures/wall.xpm"
-# define COLLECTIBLE_TEXTURES  "./textures/collectible/Gold0.xpm"
+# define PLAYER_TEXTURE  "./textures/player.xpm"
+# define FLOOR_TEXTURE  "./textures/floor.xpm"
+# define EXIT_TEXTURE  "./textures/exit.xpm"
+# define WALL_TEXTURE  "./textures/wall.xpm"
+# define COLLECTIBLE_TEXTURE  "./textures/collectible/Gold0.xpm"
 # define WIDTH_TEXTURES 32
 # define HEIGHT_TEXTURES 32
+
+# include "so_long.h"
+
+char	*get_path(char c);
 
 #endif

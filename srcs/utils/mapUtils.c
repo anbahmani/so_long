@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:15:02 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/07 18:05:52 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/01 11:37:50 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,27 @@ char	**file_to_tab(char const *file_name)
 	tab[nb_line] = NULL;
 	close(fd);
 	return (tab);
+}
+
+void	get_player_position(t_map_data *map)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (map->map[i] != NULL)
+	{
+		j = 1;
+		while (map->map[i][j])
+		{
+			if (map->map[i][j] == 'P')
+			{
+				map->player.x = j;
+				map->player.y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
 }

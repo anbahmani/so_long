@@ -6,11 +6,17 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 17:09:17 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/29 19:34:27 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/01 14:41:58 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/so_long.h"
+
+void	end_game(t_data *engine)
+{
+	free_mlx(engine);
+	exit(0);
+}
 
 int	main(int ac, char **av)
 {
@@ -22,6 +28,7 @@ int	main(int ac, char **av)
 		return (1);
 	map.width = (int)ft_strlen((char const *)map.map[0]);
 	map.height = (int)count_str((char const **)map.map);
+	get_player_position(&map);
 	init_ihm(&map, &data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img.img, 0, 0);
 	mlx_loop(data.mlx);

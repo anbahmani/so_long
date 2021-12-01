@@ -17,6 +17,7 @@ LIBFT = libft
 SRCS = 	srcs/free_element/free_tab.c\
 		srcs/utils/mapUtils.c\
 		srcs/utils/fileUtils.c\
+		srcs/utils/textureUtils.c\
 		srcs/check_error/check_arg_error.c\
 		srcs/check_error/check_error.c\
 		srcs/check_error/check_input_file_error.c\
@@ -26,9 +27,11 @@ SRCS = 	srcs/free_element/free_tab.c\
 		srcs/get_next_line/get_next_line.c\
 		srcs/get_next_line/get_next_line_utils.c\
 		srcs/ihm/draw_map.c\
-		srcs/ihm/draw_texture.c\
 		srcs/ihm/init_ihm.c\
-		srcs/ihm/pixel_put.c
+		srcs/ihm/pixel_put.c\
+		srcs/events/catch_event.c\
+		srcs/events/move.c\
+
 
 OBJS	=	${SRCS:.c=.o}
 
