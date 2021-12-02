@@ -23,6 +23,7 @@ SRCS = 	srcs/free_element/free_tab.c\
 		srcs/check_error/check_input_file_error.c\
 		srcs/check_error/check_input_map_char_error.c\
 		srcs/check_error/check_input_map_error.c\
+		srcs/check_error/check_texture_file_error.c\
 		srcs/so_long_main.c\
 		srcs/get_next_line/get_next_line.c\
 		srcs/get_next_line/get_next_line_utils.c\
