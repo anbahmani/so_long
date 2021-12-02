@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 21:34:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/20 19:11:28 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/02 19:43:50 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ static int	check_input_not_directory(char const *file_name)
 
 	fd = open((char *)file_name, O_DIRECTORY);
 	if (fd != -1)
+	{
+		close(fd);
 		return (0);
-	close(fd);
+	}
 	return (1);
 }
 

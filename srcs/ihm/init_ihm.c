@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:30:26 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/02 00:08:58 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/02 19:56:45 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_ihm(t_map_data *map, t_ihm *data)
 			&(data->img.endian));
 	engine.map = map;
 	engine.data = data;
+	engine.nb_move = 0;
 	check_text_file_error(&engine);
 	draw_map(*map, data);
 	catch_event(&engine);

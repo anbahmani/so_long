@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_texture_file_error.c                            :+:      :+:    :+:   */
+/*   check_texture_file_error.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 18:45:17 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/01 21:53:19 by abahmani         ###   ########.fr       */
+/*   Created: 2021/12/02 19:33:44 by abahmani          #+#    #+#             */
+/*   Updated: 2021/12/02 19:43:31 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,17 @@ static int	open_img_xpm(char *texture_name, t_data *engine)
 			&height, &width);
 	if (!tmp || width != WIDTH_TEXTURES || height != HEIGHT_TEXTURES)
 	{
-		msg = ft_strjoin("Le fichier texture suivant n'a pas pu être ouvert : ",
-		texture_name);
+		if (!tmp)
+			msg = ft_strjoin("Le fichier texture est errone : ",
+					texture_name);
+		else
+			msg = ft_strjoin("La taille de la texture n'est pas bonne : ",
+					texture_name);
 		print_error(msg);
 		free(msg);
 		return (0);
 	}
+	mlx_destroy_image(engine->data->mlx, tmp);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 21:36:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/01 12:06:45 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/02 20:00:17 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 # elif __linux__
 #  define OS 'l'
 # endif
-
 
 int		count_str(char const **tab);
 void	print_error(char *msg);
