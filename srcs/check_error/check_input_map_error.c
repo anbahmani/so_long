@@ -6,13 +6,13 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 22:07:55 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/07 17:38:05 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/04 19:06:42 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/so_long.h"
 
-static int	check_authorized_char(char **tab)
+int	check_authorized_char(char **tab)
 {
 	int	i;
 	int	j;
@@ -70,33 +70,30 @@ static int	check_border_char(char **tab)
 
 	if (count_str((char const **)tab) < 3)
 		return (0);
-	i = 0;
-	while (tab[0][i])
+	i = -1;
+	while (tab[0][++i])
 	{
 		if (tab[0][i] != '1')
 			return (0);
-		i++;
 	}
-	i = 1;
-	while (tab[i + 1] != NULL)
+	i = 0;
+	while (tab[++i + 1] != NULL)
 	{
 		if (tab[i][0] != '1' || last_char(tab[i]) != '1')
 			return (0);
-		i++;
 	}
-	j = 0;
-	while (tab[i][j])
+	j = -1;
+	while (tab[i][++j])
 	{
 		if (tab[i][j] != '1')
 			return (0);
-		j++;
 	}
 	return (1);
 }
 
-int	check_map(char **tab)
+int	check_map(char **tab, int (*f)(char **tab))
 {
-	if (!check_authorized_char(tab))
+	if (!(*f)(tab))
 	{
 		print_error("La map contient des un ou des caracteres non autorises.");
 		return (0);
@@ -106,7 +103,7 @@ int	check_map(char **tab)
 		print_error("La map n'est pas rectangulaire ou pas assez grande.");
 		return (0);
 	}
-	if(!check_border_char(tab))
+	if (!check_border_char(tab))
 	{
 		print_error("La map n'est pas entouree de mur.");
 		return (0);

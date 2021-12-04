@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:58:51 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/07 18:06:43 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/04 19:09:59 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	print_error(char *msg)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(msg, 2);
-	ft_putstr_fd("\n", 2);	
+	ft_putstr_fd("\n", 2);
 }
 
-char	**check_error(int ac, char **av)
+char	**check_error(int ac, char **av, int (*f)(char **tab))
 {
 	char	**tab;
 
@@ -28,7 +28,7 @@ char	**check_error(int ac, char **av)
 	tab = file_to_tab(av[1]);
 	if (tab == NULL)
 		return (NULL);
-	if (!check_map(tab) || !check_number_char(tab))
+	if (!(*f)(tab) || !check_number_char(tab))
 	{
 		free_tab(tab);
 		return (NULL);

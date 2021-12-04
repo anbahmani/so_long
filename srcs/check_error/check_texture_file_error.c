@@ -6,13 +6,13 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 19:33:44 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/02 19:43:31 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/04 18:31:43 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/so_long.h"
 
-static int	open_img_xpm(char *texture_name, t_data *engine)
+int	open_img_xpm(char *texture_name, t_data *engine)
 {
 	void	*tmp;
 	int		width;

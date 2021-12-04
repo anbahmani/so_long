@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 00:18:54 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/02 19:23:17 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/04 18:33:22 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	free_mlx(t_data *engine)
 		mlx_destroy_window(engine->data->mlx, engine->data->mlx_win);
 	if (OS == 'l')
 	{
-		//MLX_DESTROY
 		free(engine->data->mlx);
 		return ;
 	}

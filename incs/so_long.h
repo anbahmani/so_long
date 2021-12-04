@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 21:36:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/02 20:00:17 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/04 21:52:33 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "img.h"
 # include "textures.h"
 # include "event.h"
+# include "bonus.h"
 
 # ifdef __APPLE__
 #  define OS 'm'

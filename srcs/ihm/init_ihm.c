@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:30:26 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/02 19:56:45 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/04 21:32:42 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_ihm(t_map_data *map, t_ihm *data)
 {
 	t_data	engine;
-	
+
 	data->mlx = mlx_init();
 	data->mlx_win = mlx_new_window(data->mlx, map->width * WIDTH_TEXTURES,
 			map->height * HEIGHT_TEXTURES, "My game");

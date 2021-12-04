@@ -14,9 +14,17 @@ MLX_MACOS_FLAGS =  -framework OpenGL -framework AppKit
 
 LIBFT = libft
 
+INCLUDES =	incs/check_error.h\
+			incs/event.h\
+			incs/free.h\
+			incs/get_map.h\
+			incs/ihm.h\
+			incs/img.h\
+			incs/so_long.h\
+			incs/textures.h\
+
 SRCS = 	srcs/free_element/free_tab.c\
 		srcs/utils/mapUtils.c\
-		srcs/utils/fileUtils.c\
 		srcs/utils/textureUtils.c\
 		srcs/check_error/check_arg_error.c\
 		srcs/check_error/check_error.c\
@@ -24,7 +32,7 @@ SRCS = 	srcs/free_element/free_tab.c\
 		srcs/check_error/check_input_map_char_error.c\
 		srcs/check_error/check_input_map_error.c\
 		srcs/check_error/check_texture_file_error.c\
-		srcs/so_long_main.c\
+		srcs/so_long.c\
 		srcs/get_next_line/get_next_line.c\
 		srcs/get_next_line/get_next_line_utils.c\
 		srcs/ihm/draw_map.c\
@@ -48,7 +56,7 @@ RM		=	rm -f
 
 RM_FOLDER = rm -rf
 
-CREATE_FOLDER = mkdir
+CREATE_FOLDER = mkdir -p
 
 OS := $(shell uname)
 
@@ -70,8 +78,6 @@ ${NAME}:	 ${OBJS}
 			${MAKE} -C ${CURRENT_MLX_FOLDER}
 			${CC} ${FLAGS} ${CURRENT_MLX_FLAGS} ${INCS} $^ -o $@ ./${CURRENT_MLX_FOLDER}/${CURRENT_MLX_EXEC} ./libft/libft.a
 			@${CREATE_FOLDER} ${OBJS_FOLDER}
-			@mv srcs/*.o ${OBJS_FOLDER}
-			@mv srcs/*/*.o ${OBJS_FOLDER}
 
 .c.o:
 			${CC} ${FLAGS} ${INCS} -c $< -o $@
