@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_path_bonus.c                                   :+:      :+:    :+:   */
+/*   range_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/04 19:30:26 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/05 18:20:29 by abahmani         ###   ########.fr       */
+/*   Created: 2021/12/05 18:59:28 by abahmani          #+#    #+#             */
+/*   Updated: 2021/12/05 19:02:17 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/so_long.h"
 
-char	*get_path_bonus(char c)
+double	range(int x1, int y1, int x2, int y2)
 {
-	if (c == '1')
-		return (WALL_TEXTURE);
-	if (c == '0')
-		return (FLOOR_TEXTURE);
-	if (c == 'P')
-		return (PLAYER_TEXTURE);
-	if (c == 'C')
-		return (COLLECTIBLE_TEXTURE);
-	if (c == 'E')
-		return (EXIT_TEXTURE);
-	return (MONSTER_TEXTURE);
+	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }

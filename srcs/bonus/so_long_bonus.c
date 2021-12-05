@@ -6,23 +6,25 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:01:05 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/04 19:47:46 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/05 18:16:37 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/so_long.h"
-void	end_game_bonus(t_data *engine, t_gold gold)
+
+int	end_game_bonus(t_bonus	*bonus)
 {
-	free_mlx(engine);
+	free_mlx(bonus->engine);
+	free_tab(bonus->gold.tab);
 	exit(0);
 }
 
-static t_gold	get_collectible_tab()
+static t_gold	*get_collectible_tab()
 {
-	t_gold	gold;
+	t_gold	*gold;
 	char	**tab;
 	
-	tab = malloc(sizeof(char *) * 8)
+	tab = malloc(sizeof(char *) * 8);
 	if (!tab)
 		return (NULL);
 	tab[0] = ft_strdup(GOLD0_TEXTURE);
@@ -33,8 +35,11 @@ static t_gold	get_collectible_tab()
 	tab[5] = ft_strdup(GOLD5_TEXTURE);
 	tab[6] = ft_strdup(GOLD6_TEXTURE);
 	tab[7] = ft_strdup(GOLD7_TEXTURE);
-	gold.tab = tab;
-	gold.curr = 0;
+	gold = malloc(sizeof(t_gold));
+	if (!gold)
+		return (NULL);
+	gold->tab = tab;
+	gold->curr = 0;
 	return (gold);
 }
 
@@ -60,7 +65,8 @@ static void	draw_map_bonus(t_map_data map, t_ihm *data)
 static void	init_ihm_bonus(t_map_data *map, t_ihm *data)
 {
 	t_data	engine;
-	t_gold	gold;
+	t_gold	*gold;
+	t_bonus	bonus;
 
 	data->mlx = mlx_init();
 	data->mlx_win = mlx_new_window(data->mlx, map->width * WIDTH_TEXTURES,
@@ -73,10 +79,14 @@ static void	init_ihm_bonus(t_map_data *map, t_ihm *data)
 	engine.map = map;
 	engine.data = data;
 	engine.nb_move = 0;
-	check_text_file_error_bonus(engine);
+	check_text_file_error_bonus(&engine);
 	gold = get_collectible_tab();
+	if (gold == NULL)
+		return; //quitter le jeu proprement
 	draw_map_bonus(*map, data);
-	catch_event(&engine);
+	bonus.engine = &engine;
+	bonus.gold = *gold;
+	catch_event_bonus(&bonus);
 }
 
 int	main(int ac, char **av)
@@ -90,6 +100,6 @@ int	main(int ac, char **av)
 	map.width = (int)ft_strlen((char const *)map.map[0]);
 	map.height = (int)count_str((char const **)map.map);
 	get_player_position(&map);
-	init_ihm(&map, &data, &check_text_file_error_bonus);
+	init_ihm_bonus(&map, &data);
 	return (0);
 }

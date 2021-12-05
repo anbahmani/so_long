@@ -1,5 +1,7 @@
 NAME = so_long
 
+NAME_BONUS = so_long_bonus
+
 MLX_LINUX_FOLDER = minilibx-linux
 
 MLX_LINUX_EXEC = libmlx_Linux.a
@@ -14,6 +16,8 @@ MLX_MACOS_FLAGS =  -framework OpenGL -framework AppKit
 
 LIBFT = libft
 
+LIBFT_PATH = ./libft/libft.a
+
 INCLUDES =	incs/check_error.h\
 			incs/event.h\
 			incs/free.h\
@@ -22,6 +26,7 @@ INCLUDES =	incs/check_error.h\
 			incs/img.h\
 			incs/so_long.h\
 			incs/textures.h\
+			incs/bonus.h\
 
 SRCS = 	srcs/free_element/free_tab.c\
 		srcs/utils/mapUtils.c\
@@ -41,8 +46,32 @@ SRCS = 	srcs/free_element/free_tab.c\
 		srcs/events/catch_event.c\
 		srcs/events/move.c\
 
+BONUS = srcs/free_element/free_tab.c\
+		srcs/utils/mapUtils.c\
+		srcs/utils/textureUtils.c\
+		srcs/utils/end_game.c\
+		srcs/check_error/check_arg_error.c\
+		srcs/check_error/check_error.c\
+		srcs/check_error/check_input_file_error.c\
+		srcs/check_error/check_input_map_char_error.c\
+		srcs/check_error/check_input_map_error.c\
+		srcs/check_error/check_texture_file_error.c\
+		srcs/get_next_line/get_next_line.c\
+		srcs/get_next_line/get_next_line_utils.c\
+		srcs/ihm/draw_map.c\
+		srcs/ihm/init_ihm.c\
+		srcs/ihm/pixel_put.c\
+		srcs/events/catch_event.c\
+		srcs/events/move.c\
+		srcs/bonus/catch_event_bonus.c\
+		srcs/bonus/check_error_bonus.c\
+		srcs/bonus/get_path_bonus.c\
+		srcs/bonus/so_long_bonus.c\
+		srcs/bonus/range_bonus.c
 
 OBJS	=	${SRCS:.c=.o}
+
+OBJS_BONUS	=	${BONUS:.c=.o}
 
 OBJS_FOLDER = .objs
 
@@ -73,12 +102,19 @@ endif
 all:		 ${NAME}
 
 
+bonus:		${NAME_BONUS}
+
 ${NAME}:	 ${OBJS}
 			${MAKE} -C ${LIBFT}
 			${MAKE} -C ${CURRENT_MLX_FOLDER}
-			${CC} ${FLAGS} ${CURRENT_MLX_FLAGS} ${INCS} $^ -o $@ ./${CURRENT_MLX_FOLDER}/${CURRENT_MLX_EXEC} ./libft/libft.a
+			${CC} ${FLAGS} ${CURRENT_MLX_FLAGS} ${INCS} $^ -o $@ ./${CURRENT_MLX_FOLDER}/${CURRENT_MLX_EXEC} ${LIBFT_PATH}
 			@${CREATE_FOLDER} ${OBJS_FOLDER}
 
+${NAME_BONUS}:	${OBJS_BONUS}
+			${MAKE} -C ${LIBFT}
+			${MAKE} -C ${CURRENT_MLX_FOLDER}
+			${CC} ${FLAGS} ${CURRENT_MLX_FLAGS} ${INCS} $^ -o $@ ./${CURRENT_MLX_FOLDER}/${CURRENT_MLX_EXEC} ${LIBFT_PATH}
+			@${CREATE_FOLDER} ${OBJS_FOLDER}
 .c.o:
 			${CC} ${FLAGS} ${INCS} -c $< -o $@
 
@@ -86,11 +122,11 @@ clean:
 			${MAKE} -C ${CURRENT_MLX_FOLDER} clean
 			${MAKE} -C ${LIBFT} clean
 			@${RM_FOLDER} ${OBJS_FOLDER}
-			@${RM} ${OBJS}
+			@${RM} ${OBJS} ${OBJS_BONUS}
 
 fclean:		clean
 			${MAKE} -C ${LIBFT} fclean
-			${RM} ${NAME}
+			${RM} ${NAME} ${NAME_BONUS}
 
 re :		fclean all
 

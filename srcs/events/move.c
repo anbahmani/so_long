@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 23:05:24 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/04 21:30:09 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/05 13:06:12 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	move(t_data *engine, int pos_x, int pos_y)
 	y = engine->map->player.y;
 	if (engine->map->map[pos_y][pos_x] == '1')
 		return (0);
-	//printf("%u\n", ++engine->nb_move);
+	printf("%u\n", ++engine->nb_move);
 	if (engine->map->map[pos_y][pos_x] == '0'
 		|| engine->map->map[pos_y][pos_x] == 'C')
 	{
@@ -61,6 +61,5 @@ int	move(t_data *engine, int pos_x, int pos_y)
 	draw_text(engine->data, pos_x, pos_y, PLAYER_TEXTURE);
 	engine->map->player.x = pos_x;
 	engine->map->player.y = pos_y;
-	//printf("test -----> %s\n", ft_itoa(engine->nb_move));
 	return (1);
 }

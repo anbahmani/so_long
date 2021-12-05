@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abahmani <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 14:49:32 by abahmani          #+#    #+#              #
-#    Updated: 2021/01/23 13:33:49 by abahmani         ###   ########.fr        #
+#    Updated: 2021/12/05 16:53:26 by abahmani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,10 @@ CFLAGS			=	-Wall -Wextra -Werror -I.
 
 RM				=	rm -f
 
+
+
+all:		${NAME}
+
 .c.o:
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
@@ -46,8 +50,6 @@ $(NAME):	${OBJS}
 
 bonus:	${OBJS} ${OBJSBONUS}
 		ar -rcs ${NAME} ${OBJS} ${OBJSBONUS}
-
-all:		${NAME}
 
 clean:			
 	${RM} ${OBJS} ${OBJSBONUS}

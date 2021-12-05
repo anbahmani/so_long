@@ -12,12 +12,6 @@
 
 #include "../incs/so_long.h"
 
-void	end_game(t_data *engine)
-{
-	free_mlx(engine);
-	exit(0);
-}
-
 int	main(int ac, char **av)
 {
 	t_map_data	map;

@@ -6,13 +6,13 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:09:40 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/04 21:38:50 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/05 13:55:08 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/so_long.h"
 
-int	key_event(int keycode, t_data *engine)
+static int	key_event(int keycode, t_data *engine)
 {
 	if (keycode == KEY_W)
 		move(engine, engine->map->player.x, engine->map->player.y - 1);
@@ -26,7 +26,6 @@ int	key_event(int keycode, t_data *engine)
 		end_game(engine);
 	mlx_put_image_to_window(engine->data->mlx, engine->data->mlx_win,
 		engine->data->img.img, 0, 0);
-	mlx_string_put(engine->data->mlx, engine->data->mlx_win, 0, 0, 0x00FFFF, ft_itoa(++engine->nb_move));
 	return (0);
 }
 
