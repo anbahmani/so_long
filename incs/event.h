@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:31:16 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/05 13:55:00 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/06 00:17:15 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@
 void	catch_event(t_data *engine);
 int		move(t_data *engine, int pos_x, int pos_y);
 int		mouse_event(t_data *engine);
+int		still_no_collectible(char **map);
 
 #endif

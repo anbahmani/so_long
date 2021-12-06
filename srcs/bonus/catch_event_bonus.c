@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:48:39 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/05 21:10:55 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/06 01:22:27 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	sprite_movement(t_bonus *bonus)
 
 static void	exchange_text(t_pos monster, int f_x, int f_y, t_bonus *bonus)
 {
-	draw_text(bonus->engine->data, monster.x, monster.y, MONSTER_TEXTURE);
-	draw_text(bonus->engine->data, f_x, f_y, FLOOR_TEXTURE);
+	draw_text(bonus->engine->data, monster.x, monster.y, FLOOR_TEXTURE);
+	draw_text(bonus->engine->data, f_x, f_y, MONSTER_TEXTURE);
 	bonus->engine->map->map[f_y][f_x] = 'M';
 	bonus->engine->map->map[monster.y][monster.x] = '0';
 	if (!get_player_position(bonus->engine->map))
@@ -107,7 +107,7 @@ static void	make_monster_move(int y, int x, t_bonus *bonus)
 	player_y = bonus->engine->map->player.y;
 	less_range = range(x, y, player_x, player_y);
 	if (bonus->engine->map->map[y + 1][x] == '0'
-	&& range(x, y + 1, player_x, player_y) <= less_range)
+		&& range(x, y + 1, player_x, player_y) <= less_range)
 		less_range = range(x, y + 1, player_x, player_y);
 	else if (bonus->engine->map->map[y - 1][x] == '0'
 			&& range(x, y - 1, player_x, player_y) <= less_range)
@@ -121,27 +121,47 @@ static void	make_monster_move(int y, int x, t_bonus *bonus)
 	make_move_less_range(x, y, bonus,less_range);
 }
 
+int count_monsters(char **map)
+{
+	int	cmp;
+	int	i;
+	int	j;
+
+	cmp = 0;
+	i = 1;
+	while (map[i] != NULL)
+	{
+		j = 1;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'M')
+				cmp++;
+			j++;
+		}
+		i++;
+	}
+	return (cmp);
+}
+
 void	monster_movement(t_bonus *bonus)
 {
 	static int	time = 0;
 	int			i;
-	int			j;
+	t_pos		*m_tab;
 
 	i = 0;
-	if ((time % 1000) == 0)
+	if ((time % 50) == 0)
 	{
-		while (bonus->engine->map->map[++i] != NULL)
+		m_tab = get_monsters_pos(bonus);
+		while (i < bonus->nb_monsters)
 		{
-			j = 0;
-			while (bonus->engine->map->map[i][++j])
-			{
-				if (bonus->engine->map->map[i][j] == 'M' && range(j, i,
-					bonus->engine->map->player.x,
-					bonus->engine->map->player.y)  < 5.0)
-					make_monster_move(i, j, bonus);
-			}
+				if (range(m_tab[i].x, m_tab[i].y, bonus->engine->map->player.x,
+					bonus->engine->map->player.y) < 5.0)
+					make_monster_move(m_tab[i].y, m_tab[i].x, bonus);
+			i++;
 		}
 		time = 0;
+		free(m_tab);
 	}
 	time++;
 }
@@ -159,23 +179,23 @@ static int	exposure_events(t_bonus *bonus)
 
 int	move_bonus(t_bonus *bonus, int pos_x, int pos_y)
 {
-	int		x;
-	int		y;
-
-	x = bonus->engine->map->player.x;
-	y = bonus->engine->map->player.y;
 	if (bonus->engine->map->map[pos_y][pos_x] == '1')
 		return (0);
 	if (bonus->engine->map->map[pos_y][pos_x] == '0'
 		|| bonus->engine->map->map[pos_y][pos_x] == 'C')
 	{
 		bonus->engine->map->map[pos_y][pos_x] = 'P';
-		bonus->engine->map->map[y][x] = '0';
+		bonus->engine->map
+		->map[bonus->engine->map->player.y][bonus->engine->map->player.x ] = '0';
 	}
-	else if (bonus->engine->map->map[pos_y][pos_x] == 'E'
+	else if ((bonus->engine->map->map[pos_y][pos_x] == 'E'
+			&& !still_no_collectible(bonus->engine->map->map))
 			|| bonus->engine->map->map[pos_y][pos_x] == 'M')
 		return (finish(bonus, bonus->engine->map->map[pos_y][pos_x]));
-	draw_text(bonus->engine->data, x, y, FLOOR_TEXTURE);
+	else if (bonus->engine->map->map[pos_y][pos_x] == 'E')
+		return (1);
+	draw_text(bonus->engine->data, bonus->engine->map->player.x,
+	bonus->engine->map->player.y, FLOOR_TEXTURE);
 	draw_text(bonus->engine->data, pos_x, pos_y, PLAYER_TEXTURE);
 	bonus->engine->map->player.x = pos_x;
 	bonus->engine->map->player.y = pos_y;

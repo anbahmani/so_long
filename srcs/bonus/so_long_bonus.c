@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:01:05 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/05 18:16:37 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/06 01:09:46 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	end_game_bonus(t_bonus	*bonus)
 	exit(0);
 }
 
-static t_gold	*get_collectible_tab()
+static t_gold	*get_collectible_tab(void)
 {
 	t_gold	*gold;
 	char	**tab;
-	
-	tab = malloc(sizeof(char *) * 8);
+
+	tab = malloc(sizeof(char *) * 9);
 	if (!tab)
 		return (NULL);
 	tab[0] = ft_strdup(GOLD0_TEXTURE);
@@ -35,6 +35,7 @@ static t_gold	*get_collectible_tab()
 	tab[5] = ft_strdup(GOLD5_TEXTURE);
 	tab[6] = ft_strdup(GOLD6_TEXTURE);
 	tab[7] = ft_strdup(GOLD7_TEXTURE);
+	tab[8] = NULL;
 	gold = malloc(sizeof(t_gold));
 	if (!gold)
 		return (NULL);
@@ -79,10 +80,11 @@ static void	init_ihm_bonus(t_map_data *map, t_ihm *data)
 	engine.map = map;
 	engine.data = data;
 	engine.nb_move = 0;
+	bonus.nb_monsters = count_monsters(map->map);
 	check_text_file_error_bonus(&engine);
 	gold = get_collectible_tab();
 	if (gold == NULL)
-		return; //quitter le jeu proprement
+		return;//quitter le jeu proprement
 	draw_map_bonus(*map, data);
 	bonus.engine = &engine;
 	bonus.gold = *gold;

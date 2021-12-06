@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 17:59:46 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/05 19:47:15 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/06 00:52:39 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_bonus
 {
 	t_data	*engine;
 	t_gold	gold;
+	int		nb_monsters;
 }	t_bonus;
 
 int		end_game_bonus(t_bonus *bonus);
@@ -46,5 +47,7 @@ int		check_authorized_char_bonus(char **tab);
 void	check_text_file_error_bonus(t_data *engine);
 char	*get_path_bonus(char c);
 double	range(int x1, int y1, int x2, int y2);
+t_pos	*get_monsters_pos(t_bonus	*bonus);
+int		count_monsters(char **map);
 
 #endif

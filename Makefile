@@ -31,6 +31,7 @@ INCLUDES =	incs/check_error.h\
 SRCS = 	srcs/free_element/free_tab.c\
 		srcs/utils/mapUtils.c\
 		srcs/utils/textureUtils.c\
+		srcs/utils/end_game.c\
 		srcs/check_error/check_arg_error.c\
 		srcs/check_error/check_error.c\
 		srcs/check_error/check_input_file_error.c\
@@ -67,7 +68,8 @@ BONUS = srcs/free_element/free_tab.c\
 		srcs/bonus/check_error_bonus.c\
 		srcs/bonus/get_path_bonus.c\
 		srcs/bonus/so_long_bonus.c\
-		srcs/bonus/range_bonus.c
+		srcs/bonus/range_bonus.c\
+		srcs/bonus/monsters_bonus.c 
 
 OBJS	=	${SRCS:.c=.o}
 
