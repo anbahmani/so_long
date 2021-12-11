@@ -6,16 +6,23 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 00:53:21 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/06 01:19:42 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/07 09:47:53 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/so_long.h"
 
+int	is_player_space(char **map, int x, int y)
+{
+	if (map[y][x] == '0' || map[y][x] == 'P')
+		return (1);
+	return (0);
+}
+
 static	void	get_monster_pos_bis(t_pos index, t_pos *tab, int cmp)
 {
 	t_pos	m;
-	
+
 	m.x = index.x;
 	m.y = index.y;
 	tab[cmp] = m;

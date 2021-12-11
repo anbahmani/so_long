@@ -69,7 +69,9 @@ BONUS = srcs/free_element/free_tab.c\
 		srcs/bonus/get_path_bonus.c\
 		srcs/bonus/so_long_bonus.c\
 		srcs/bonus/range_bonus.c\
-		srcs/bonus/monsters_bonus.c 
+		srcs/bonus/monsters_bonus.c \
+		srcs/bonus/monsters_movement.c\
+		srcs/bonus/finish.c
 
 OBJS	=	${SRCS:.c=.o}
 

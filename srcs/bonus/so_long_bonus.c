@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:01:05 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/06 01:09:46 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/06 10:19:38 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	init_ihm_bonus(t_map_data *map, t_ihm *data)
 	check_text_file_error_bonus(&engine);
 	gold = get_collectible_tab();
 	if (gold == NULL)
-		return;//quitter le jeu proprement
+		end_game(&engine);
 	draw_map_bonus(*map, data);
 	bonus.engine = &engine;
 	bonus.gold = *gold;
