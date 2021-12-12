@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 22:07:55 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/04 19:06:42 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/11 11:34:20 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static int	check_border_char(char **tab)
 
 int	check_map(char **tab, int (*f)(char **tab))
 {
-	if (!(*f)(tab))
+	if ((*f)(tab) == 0)
 	{
 		print_error("La map contient des un ou des caracteres non autorises.");
 		return (0);

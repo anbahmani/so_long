@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 17:59:46 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/07 13:37:57 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/11 14:39:26 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 #include "so_long.h"
 #include <math.h>
 
-# define VITESSE 50
+
+# define VITESSE 300
 
 typedef struct s_gold
 {

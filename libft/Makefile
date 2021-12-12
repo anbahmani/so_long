@@ -6,7 +6,7 @@
 #    By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 14:49:32 by abahmani          #+#    #+#              #
-#    Updated: 2021/12/05 16:53:26 by abahmani         ###   ########.fr        #
+#    Updated: 2021/12/11 12:33:00 by abahmani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,19 +43,22 @@ RM				=	rm -f
 all:		${NAME}
 
 .c.o:
-		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+		@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
+		@echo "compiling libft" 
 		ar -rcs ${NAME} ${OBJS}
 
 bonus:	${OBJS} ${OBJSBONUS}
+		@echo "compiling libft bonus"
 		ar -rcs ${NAME} ${OBJS} ${OBJSBONUS}
 
-clean:			
-	${RM} ${OBJS} ${OBJSBONUS}
+clean:
+	@echo "cleaning libft"
+	@${RM} ${OBJS} ${OBJSBONUS}
 
 fclean:		clean			
-		${RM} ${NAME}
+		@${RM} ${NAME}
 
 re:			fclean all
 

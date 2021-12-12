@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 21:36:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/04 21:52:33 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/11 19:02:14 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "libft.h"
 # include "../minilibx-macos/mlx.h"
 # include "../minilibx-linux/mlx.h"
+# include "/usr/include/X11/X.h"
 # include "get_map.h"
 # include "free.h"
 # include "check_error.h"

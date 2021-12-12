@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:48:39 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/06 10:28:05 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/11 11:20:16 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,16 @@ void	sprite_movement(t_bonus *bonus)
 
 static int	exposure_events(t_bonus *bonus)
 {
+	char	*str_nb_move;
+	
 	sprite_movement(bonus);
 	monster_movement(bonus);
 	mlx_put_image_to_window(bonus->engine->data->mlx,
 		bonus->engine->data->mlx_win, bonus->engine->data->img.img, 0, 0);
+	str_nb_move = ft_itoa(bonus->engine->nb_move);
 	mlx_string_put(bonus->engine->data->mlx, bonus->engine->data->mlx_win,
-		0, 10, 0x00FFFF, ft_itoa(bonus->engine->nb_move));
+		0, 10, 0x00FFFF, str_nb_move);
+	free(str_nb_move);
 	return (1);
 }
 
