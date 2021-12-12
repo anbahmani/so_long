@@ -6,11 +6,11 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:30:26 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/04 21:32:42 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/12 19:52:51 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/so_long.h"
+#include "so_long.h"
 
 void	init_ihm(t_map_data *map, t_ihm *data)
 {

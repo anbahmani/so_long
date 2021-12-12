@@ -6,11 +6,11 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:48:39 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/11 11:20:16 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/12 19:52:51 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/so_long.h"
+#include "so_long.h"
 
 void	sprite_movement(t_bonus *bonus)
 {

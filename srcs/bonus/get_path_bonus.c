@@ -6,11 +6,11 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:30:26 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/06 10:18:07 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/12 19:52:51 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/so_long.h"
+#include "so_long.h"
 
 char	*get_path_bonus(char c)
 {

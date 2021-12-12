@@ -6,11 +6,11 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:15:02 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/05 20:21:17 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/12 19:52:51 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/so_long.h"
+#include "so_long.h"
 
 int	count_str(char const **tab)
 {

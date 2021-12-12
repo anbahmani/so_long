@@ -6,11 +6,11 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:01:05 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/06 10:19:38 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/12 19:52:51 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/so_long.h"
+#include "so_long.h"
 
 int	end_game_bonus(t_bonus	*bonus)
 {

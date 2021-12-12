@@ -6,14 +6,13 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 18:18:01 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/05 18:18:18 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/12 19:52:51 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/so_long.h"
+#include "so_long.h"
 
 void	end_game(t_data *engine)
 {
 	free_mlx(engine);
-	exit(0);
 }

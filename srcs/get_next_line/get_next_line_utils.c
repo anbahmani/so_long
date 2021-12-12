@@ -6,11 +6,11 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 07:22:30 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/06 18:36:12 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/12 19:52:37 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/so_long.h"
+#include "so_long.h"
 
 static char	*ft_malloc(unsigned int start, size_t len, size_t size)
 {

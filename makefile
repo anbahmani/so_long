@@ -1,152 +1,120 @@
-NAME = so_long
+NAME        	=   so_long
 
-NAME_BONUS = so_long_bonus
+CC          	=   gcc
 
-FLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=128
+SRC_DIR			= 	$(shell find srcs -type d)
+INC_DIR			= 	$(shell find includes -type d) \
+					$(shell find lib/mlx -type d) \
+					$(shell find lib/libft -type d)
+LIB_DIR			=	lib/libft lib/mlx
+OBJ_DIR			=	obj
 
-OS := $(shell uname)
+vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 
-ifeq ($(OS),Darwin)
-	MLX_FOLDER = minilibx-macos
-	MLX_EXEC = libmlx.a
-	MLX_FLAGS = -framework OpenGL -framework AppKit
-else
-	MLX_FOLDER = minilibx-linux
-	MLX_EXEC = libmlx_Linux.a
-	MLX_FLAGS = -lm -lXext -lX11
-endif
+LINUXFLAG	=	-lm -lX11 -lXext
 
+# library -----------------------------------------------------------
 
-FILESC = srcs/free_element/free_tab.c\
-		srcs/utils/mapUtils.c\
-		srcs/utils/textureUtils.c\
-		srcs/utils/end_game.c\
-		srcs/check_error/check_arg_error.c\
-		srcs/check_error/check_error.c\
-		srcs/check_error/check_input_file_error.c\
-		srcs/check_error/check_input_map_char_error.c\
-		srcs/check_error/check_input_map_error.c\
-		srcs/check_error/check_texture_file_error.c\
-		srcs/so_long.c\
-		srcs/get_next_line/get_next_line.c\
-		srcs/get_next_line/get_next_line_utils.c\
-		srcs/ihm/draw_map.c\
-		srcs/ihm/init_ihm.c\
-		srcs/ihm/pixel_put.c\
-		srcs/events/catch_event.c\
-		srcs/events/move.c\
+LIB			=	ft mlx_Linux
 
-FILESO = free_tab.o\
-		mapUtils.o\
-		textureUtils.o\
-		end_game.o\
-		check_arg_error.o\
-		check_error.o\
-		check_input_file_error.o\
-		check_input_map_char_error.o\
-		check_input_map_error.o\
-		check_texture_file_error.o\
-		so_long.o\
-		get_next_line.o\
-		get_next_line_utils.o\
-		draw_map.o\
-		init_ihm.o\
-		pixel_put.o\
-		catch_event.o\
-		move.o\
+SRC			= 	get_next_line_utils.c \
+				get_next_line.c \
+				draw_map.c \
+				init_ihm.c \
+				pixel_put.c \
+				free_tab.c \
+				catch_event.c \
+				move.c \
+				check_arg_error.c \
+				check_input_map_char_error.c \
+				check_input_map_error.c \
+				check_texture_file_error.c \
+				check_input_file_error.c \
+				check_error.c \
+				mapUtils.c \
+				end_game.c \
+				textureUtils.c \
+				so_long.c
 
+OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
-PATHLIBFT = ./libft/
-LIBFTLIB = libft.a
+OBJ_BONUS	=	$(addprefix $(OBJ_DIR_BONUS)/, $(SRC:%.c=%.o))
 
-BONUSFILESC = srcs/free_element/free_tab.c\
-		srcs/utils/mapUtils.c\
-		srcs/utils/textureUtils.c\
-		srcs/utils/end_game.c\
-		srcs/check_error/check_arg_error.c\
-		srcs/check_error/check_error.c\
-		srcs/check_error/check_input_file_error.c\
-		srcs/check_error/check_input_map_char_error.c\
-		srcs/check_error/check_input_map_error.c\
-		srcs/check_error/check_texture_file_error.c\
-		srcs/get_next_line/get_next_line.c\
-		srcs/get_next_line/get_next_line_utils.c\
-		srcs/ihm/draw_map.c\
-		srcs/ihm/init_ihm.c\
-		srcs/ihm/pixel_put.c\
-		srcs/events/catch_event.c\
-		srcs/events/move.c\
-		srcs/bonus/catch_event_bonus.c\
-		srcs/bonus/check_error_bonus.c\
-		srcs/bonus/get_path_bonus.c\
-		srcs/bonus/so_long_bonus.c\
-		srcs/bonus/range_bonus.c\
-		srcs/bonus/monsters_bonus.c \
-		srcs/bonus/monsters_movement.c\
-		srcs/bonus/finish.c
+# Compilation flags -------------------------------------------------
 
+CFLAGS		=	-Wall -Wextra -Werror
 
-BONUSFILESO = free_tab.o\
-		mapUtils.o\
-		textureUtils.o\
-		end_game.o\
-		check_arg_error.o\
-		check_error.o\
-		check_input_file_error.o\
-		check_input_map_char_error.o\
-		check_input_map_error.o\
-		check_texture_file_error.o\
-		get_next_line.o\
-		get_next_line_utils.o\
-		draw_map.o\
-		init_ihm.o\
-		pixel_put.o\
-		catch_event.o\
-		move.o\
-		catch_event_bonus.o\
-		check_error_bonus.o\
-		get_path_bonus.o\
-		so_long_bonus.o\
-		range_bonus.o\
-		monsters_bonus.o \
-		monsters_movement.o\
-		finish.o
+D_NO_BONUS  =	-DBONUS=0
 
+D_BONUS		=	-DBONUS=1
 
-MLXINC = mlx.h
-MLXLIB = libmlx.a
+IFLAGS		=	$(foreach dir, $(INC_DIR), -I $(dir))
 
-all : $(NAME)
+LFLAGS		=	$(foreach dir, $(LIB_DIR), -L $(dir)) \
+				$(foreach lib, $(LIB), -l $(lib)) \
+				$(LINUXFLAG)
 
-$(NAME) : $(FILESC) $(LIBFTFILESC)
-	@mkdir -p obj
-	@make -C ./libft
-	@mv libft/*.o ./obj && mv ./libft/libft.a .
-	@cd $(MLX_FOLDER) && make all && mv $(MLXLIB) .. && make clean
-	@gcc $(FLAGS) -c $(FILESC) $(MLX_FOLDER)/$(MLXINC) -lm -lX11 -lXext  -L/usr/X11R6/lib
-	@gcc $(FLAGS) $(FILESO) $(LIBFTLIB) $(MLXLIB) $(MLXFLAGS) -o $(NAME) -lm -lX11 -lXext  -L/usr/X11R6/lib
-	@mv $(FILESO) $(MLXLIB) $(LIBFTLIB) ./obj
+# Colors ------------------------------------------------------------
 
-clean :
-	@rm -Rf ./obj
-	@make -C libft clean
+_GREY	=	$'\e[30m
+_RED	=	$'\e[31m
+_GREEN	=	$'\e[32m
+_YELLOW	=	$'\e[33m
+_BLUE	=	$'\e[34m
+_PURPLE	=	$'\e[35m
+_CYAN	=	$'\e[36m
+_WHITE	=	$'\e[37m
 
-fclean : clean
-	@rm -Rf $(NAME)
-	@rm -Rf $(NAME_BONUS)
-	@make -C libft fclean
+# main part ---------------------------------------------------------
 
-re : fclean all
+all:
+	@echo "\n$(_BLUE)___$(NAME) Setting___\n$(_WHITE)"
+	@make BONUS=$(D_NO_BONUS) $(NAME)
 
-bonus : $(NAME_BONUS)
+bonus: fclean
+	@echo "\n$(_BLUE)___$(NAME) Setting___\n$(_WHITE)"
+	@make BONUS=$(D_BONUS) $(NAME)
 
-$(NAME_BONUS) : $(BONUSFILESC) $(LIBFTFILESC)
-	@mkdir -p obj
-	@make -C ./libft
-	@mv libft/*.o ./obj && mv ./libft/libft.a .
-	@cd $(MLX_FOLDER) && make all && mv $(MLXLIB) .. && make clean
-	@cc $(FLAGS) -c $(BONUSFILESC) $(MLX_FOLDER)/$(MLXINC) -lm -lX11 -lXext  -L/usr/X11R6/lib
-	@cc $(FLAGS) $(BONUSFILESO) $(LIBFTLIB) $(MLXLIB) $(MLXFLAGS) -o $(NAME_BONUS) -lm -lX11 -lXext  -L/usr/X11R6/lib
-	@mv $(BONUSFILESO) $(MLXLIB) $(LIBFTLIB) ./obj
+show:
+	@echo "$(_BLUE)SRC :\n$(_YELLOW)$(SRC)$(_WHITE)"
+	@echo "$(_BLUE)OBJ :\n$(_YELLOW)$(OBJ)$(_WHITE)"
+	@echo "$(_BLUE)CFLAGS :\n$(_YELLOW)$(CFLAGS)$(_WHITE)"
+	@echo "$(_BLUE)IFLAGS :\n$(_YELLOW)$(IFLAGS)$(_WHITE)"
+	@echo "$(_BLUE)LFLAGS :\n$(_YELLOW)$(LFLAGS)$(_WHITE)"
+	@echo "$(_BLUE)LIB_DIR :\n$(_YELLOW)$(LIB_DIR)$(_WHITE)"
+	@echo "\n-----\n"
+	@echo "$(_BLUE)Compiling : \n$(_YELLOW)$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME)$(_WHITE)"
 
-.PHONY:		all clean fclean re
+install:
+	@$(foreach dir, $(LIB_DIR), make -C $(dir);)
+
+re-install:
+	@$(foreach dir, $(LIB_DIR), make -C $(dir) re;)
+
+fclean-install:
+	@$(foreach dir, $(LIB_DIR), make -C $(dir) fclean;)
+
+$(NAME): install $(OBJ)
+	@echo "-----\nCreating Binary File $(_YELLOW)$@$(_WHITE) ... \c"
+	@$(CC) $(CFLAGS) $(BONUS) $(OBJ) $(LFLAGS) -o $(NAME)
+	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
+
+$(OBJ_DIR)/%.o : %.c
+	@echo "Compiling $(_YELLOW)$@$(_WHITE) ... \c"
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(BONUS) $(IFLAGS) -o $@ -c $<
+	@echo "$(_GREEN)DONE$(_WHITE)"
+
+re:	fclean all
+
+clean:
+	@echo "$(_WHITE)Deleting Objects Directory $(_YELLOW)$(OBJ_DIR)$(_WHITE) ... \c"
+	@$(foreach file, $(OBJ), rm -rf $(file))
+	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
+
+fclean:	clean
+	@echo "Deleting Binary File $(_YELLOW)$(NAME)$(_WHITE) ... \c"
+	@rm -f $(NAME)
+	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
+
+.PHONY: all bonus show install re-install re clean flcean

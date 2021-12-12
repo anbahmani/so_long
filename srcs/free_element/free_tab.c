@@ -6,11 +6,11 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 00:18:54 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/04 18:33:22 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/12 19:52:51 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/so_long.h"
+#include "so_long.h"
 
 char	**free_tab(char **tab)
 {
@@ -33,10 +33,7 @@ void	free_mlx(t_data *engine)
 		mlx_destroy_image(engine->data->mlx, engine->data->img.img);
 	if (engine->data->mlx_win)
 		mlx_destroy_window(engine->data->mlx, engine->data->mlx_win);
-	if (OS == 'l')
-	{
-		free(engine->data->mlx);
-		return ;
-	}
+	mlx_destroy_display(engine->data->mlx);
 	free(engine->data->mlx);
+	exit(0);
 }

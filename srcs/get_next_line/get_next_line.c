@@ -6,11 +6,11 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 10:53:47 by abahmani          #+#    #+#             */
-/*   Updated: 2021/11/06 18:36:05 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/12 19:53:13 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/so_long.h"
+#include "so_long.h"
 
 int	find_new_line(char *str)
 {
@@ -83,24 +83,24 @@ int	free_str(int newline, char **str)
 int	get_next_line(int fd, char **line)
 {
 	int				ret;
-	char			buf[BUFFER_SIZE + 1];
+	char			buf[20 + 1];
 	static char		*str = NULL;
 	int				newline;
 
-	if (!line || BUFFER_SIZE <= 0 || read(fd, buf, 0))
+	if (!line || 20 <= 0 || read(fd, buf, 0))
 		return (-1);
 	if (!str)
 	{
 		str = malloc(sizeof(char));
 		str[0] = '\0';
 	}
-	ret = read(fd, buf, BUFFER_SIZE);
+	ret = read(fd, buf, 20);
 	while (ret > 0)
 	{
 		newline = fill_buf(buf, line, &str, ret);
 		if (newline == 1 || newline == -1)
 			return (free_str(newline, &str));
-		ret = read(fd, buf, BUFFER_SIZE);
+		ret = read(fd, buf, 20);
 	}
 	newline = end(ret, &str, line);
 	return (free_str(newline, &str));

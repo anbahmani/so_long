@@ -6,11 +6,11 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 10:21:47 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/07 13:37:40 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/12 19:52:51 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/so_long.h"
+#include "so_long.h"
 
 static void	exchange_text(t_pos monster, int f_x, int f_y, t_bonus *bonus)
 {
@@ -106,7 +106,7 @@ void	monster_movement(t_bonus *bonus)
 		while (i < bonus->nb_monsters)
 		{
 			if (range(m_tab[i].x, m_tab[i].y, bonus->engine->map->player.x,
-					bonus->engine->map->player.y) < 5.0)
+					bonus->engine->map->player.y) < RANGE)
 				make_monster_move(m_tab[i].y, m_tab[i].x, bonus);
 			i++;
 		}
