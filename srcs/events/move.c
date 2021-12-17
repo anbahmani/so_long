@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 23:05:24 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/12 19:52:51 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/17 21:39:02 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ int	still_no_collectible(char **map)
 static int	process_exit(t_data *engine)
 {
 	if (!still_no_collectible(engine->map->map))
+	{
 		end_game(engine);
+		printf("%u\n", ++engine->nb_move);
+	}
 	return (1);
 }
 
@@ -48,12 +51,12 @@ int	move(t_data *engine, int pos_x, int pos_y)
 	y = engine->map->player.y;
 	if (engine->map->map[pos_y][pos_x] == '1')
 		return (0);
-	printf("%u\n", ++engine->nb_move);
 	if (engine->map->map[pos_y][pos_x] == '0'
 		|| engine->map->map[pos_y][pos_x] == 'C')
 	{
 		engine->map->map[pos_y][pos_x] = 'P';
 		engine->map->map[y][x] = '0';
+		printf("%u\n", ++engine->nb_move);
 	}
 	else if (engine->map->map[pos_y][pos_x] == 'E')
 		return (process_exit(engine));
