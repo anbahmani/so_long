@@ -131,7 +131,7 @@ re-install:
 
 fclean-install:
 	@make -C lib/libft fclean
-	@make -C lib/mlx clean
+	@make -C lib/mlx_linux clean
 
 $(NAME): install $(OBJ)
 	@echo "-----\nCreating Binary File $(_YELLOW)$@$(_WHITE) ... \c"
